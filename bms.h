@@ -63,41 +63,69 @@ typedef enum bms_error_t {  BMS_OK,
                             BMS_PERM_FAIL_RESET_ERROR };
 
 /*
- * 	Function: bms_reg_write
- * 	----------------------------
+ *  Function: bms_print
+ *  ----------------------------
  *  Writes data into the registers of the MAX17320 BMS
  *
  *  reg: memory start position in the BMS
  *  data: pointer to the data being written into the BMS
- *	len: length of the data to be written in bytes
+ *  len: length of the data to be written in bytes
+ *
+ *  returns: an error code from bms_error_t enum based on success 
+ */
+void bms_print(char *str);
+
+/*
+ *  Function: bms_log
+ *  ----------------------------
+ *  Writes data into the registers of the MAX17320 BMS
+ *
+ *  reg: memory start position in the BMS
+ *  data: pointer to the data being written into the BMS
+ *  len: length of the data to be written in bytes
+ *
+ *  returns: an error code from bms_error_t enum based on success 
+ */
+void bms_log(char *fmt, ...);
+
+/*
+ *  Function: bms_delay
+ *  ----------------------------
+ *  Writes data into the registers of the MAX17320 BMS
+ *
+ *  reg: memory start position in the BMS
+ *  data: pointer to the data being written into the BMS
+ *  len: length of the data to be written in bytes
+ *
+ *  returns: an error code from bms_error_t enum based on success 
+ */
+void bms_delay(uint32_t msecs);
+
+/*
+ *  Function: bms_reg_write
+ *  ----------------------------
+ *  Writes data into the registers of the MAX17320 BMS
+ *
+ *  reg: memory start position in the BMS
+ *  data: pointer to the data being written into the BMS
+ *  len: length of the data to be written in bytes
  *
  *  returns: an error code from bms_error_t enum based on success 
  */
 bms_error_t bms_reg_write(uint16_t reg, uint8_t * data, uint16_t len);
 
 /*
- * 	Function: bms_reg_read
- * 	----------------------------
- *  Read data from the registers of the MAX17320 BMS
+ *  Function: bms_reg_read
+ *  ----------------------------
+ *  Writes data into the registers of the MAX17320 BMS
  *
  *  reg: memory start position in the BMS
- *  data: pointer to the data being read from the BMS
- *	len: length of the data to be read in bytes
+ *  data: pointer to the data being written into the BMS
+ *  len: length of the data to be written in bytes
  *
  *  returns: an error code from bms_error_t enum based on success 
  */
 bms_error_t bms_reg_read(uint16_t reg, uint8_t * data, uint16_t len);
-
-/*
- * 	Function: bms_init
- * 	----------------------------
- *  Based on it's current status, will reset and write data to the BMS.
- *	It is safe to call this function any number of times, a reset and 
- * 	write will only happen once or if there's an issue with the device.
- *
- *  returns: an error code from bms_error_t enum based on success 
- */
-bms_error_t bms_init();
 
 /*
  *  Function: bms_full_reset
